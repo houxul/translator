@@ -42,5 +42,10 @@
 	"dependencies": {
 		"ky": "^0.9.0",
         "ky-universal": "^0.1.0"
-	}
+	},
+	"icon": "images/translator.png",
+	"galleryBanner": {
+        "color": "#C80000",
+        "theme": "dark"
+    }
 }
