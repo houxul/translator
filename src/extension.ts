@@ -1,7 +1,8 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import {translator} from './translator'
+import { translator } from './translator';
+import { declaimer } from './declaimer';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -12,6 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "translator" is now active!');
 
 	const trans = new translator();
+	const decl = new declaimer();
 	async function hover(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken) {
 		// console.log('document', JSON.stringify(document));
 		// console.log('position', JSON.stringify(position));
@@ -34,6 +36,13 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(hoverDisposable);
+
+	context.subscriptions.push(vscode.commands.registerTextEditorCommand('extension.readAloud', (textEditor, edit, args) => {
+		const positionWord =  textEditor.document.getText(textEditor.selection);
+		if (positionWord !== '') {
+			decl.exec(positionWord);
+		}
+	}));
 }
 
 // this method is called when your extension is deactivated

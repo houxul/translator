@@ -16,7 +16,29 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": []
+		"commands": [
+			{
+				"command": "extension.readAloud",
+				"title": "朗读"
+			}
+		],
+		"keybindings": [
+            {
+                "command": "extension.readAloud",
+                "key": "f2",
+                "mac": "f2",
+                "when": "editorTextFocus"
+            }
+        ],
+		"menus": {
+            "editor/context": [
+                {
+                    "when": "editorFocus",
+                    "command": "extension.readAloud",
+                    "group": "navigation"
+                }
+            ]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",
@@ -41,11 +63,11 @@
 	},
 	"dependencies": {
 		"ky": "^0.9.0",
-        "ky-universal": "^0.1.0"
+		"ky-universal": "^0.1.0"
 	},
 	"icon": "images/translator.png",
 	"galleryBanner": {
         "color": "#C80000",
         "theme": "dark"
-    }
+	}
 }
