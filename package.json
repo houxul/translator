@@ -3,7 +3,7 @@
 	"displayName": "translator",
 	"description": "word translator",
 	"publisher": "houxul",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"repository": "https://github.com/houxul/translator",
 	"engines": {
 		"vscode": "^1.48.0"
@@ -23,21 +23,21 @@
 			}
 		],
 		"keybindings": [
-            {
-                "command": "extension.readAloud",
-                "key": "f2",
-                "mac": "f2",
-                "when": "editorTextFocus"
-            }
-        ],
+			{
+				"command": "extension.readAloud",
+				"key": "f2",
+				"mac": "f2",
+				"when": "editorTextFocus"
+			}
+		],
 		"menus": {
-            "editor/context": [
-                {
-                    "when": "editorFocus",
-                    "command": "extension.readAloud",
-                    "group": "navigation"
-                }
-            ]
+			"editor/context": [
+				{
+					"when": "editorFocus",
+					"command": "extension.readAloud",
+					"group": "navigation"
+				}
+			]
 		}
 	},
 	"scripts": {
@@ -67,7 +67,7 @@
 	},
 	"icon": "images/translator.png",
 	"galleryBanner": {
-        "color": "#C80000",
-        "theme": "dark"
+		"color": "#C80000",
+		"theme": "dark"
 	}
 }
