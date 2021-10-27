@@ -15,8 +15,8 @@ export class jumper {
         if (!gitPath) {
             return;
         }
-        const pathSuffix = this.jointPath(fileSplits.slice(i)) + `#L${start}-${end}`;
-        const remoteUrl = await this.remotePath(gitPath, pathSuffix);
+        const pathSuffix = this.jointPath(fileSplits.slice(i));
+        const remoteUrl = await this.remotePath(gitPath, pathSuffix, start, end);
 		vscode.env.clipboard.writeText(remoteUrl);
 		vscode.env.openExternal(vscode.Uri.parse(remoteUrl));
         return remoteUrl;
@@ -49,7 +49,7 @@ export class jumper {
         return undefined;
     }
 
-    async remotePath(gitPath: string, pathSuffix: string) {
+    async remotePath(gitPath: string, pathSuffix: string, start: number, end: number) {
         const cfgPath = gitPath + '/config';
         const content = await new Promise((c, e) => {
             vscode.workspace.fs.readFile(vscode.Uri.file(cfgPath)).then(c, e);
@@ -61,9 +61,9 @@ export class jumper {
         let url = urlLineBlocks[urlLineBlocks.length-1];
         url = url.replace('https://', '').replace('git@', '').replace('.git', '').replace(':', '/');
         if (url.includes('github.com')) {
-            return 'https://' + url + '/blob/master/' + pathSuffix;
+            return 'https://' + url + '/blob/master/' + pathSuffix + `#L${start}-L${end}`;
         }
-        return 'https://' + url + '/-/tree/master/' + pathSuffix;
+        return 'https://' + url + '/-/tree/master/' + pathSuffix + `#L${start}-${end}`;
     }
 
     uint8ArrayToString(u8a: Uint8Array) {
