@@ -28,6 +28,11 @@
 				"key": "f2",
 				"mac": "f2",
 				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.jumpWeb",
+				"key": "f3",
+				"mac": "f3"
 			}
 		],
 		"menus": {

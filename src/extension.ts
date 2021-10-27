@@ -3,6 +3,7 @@
 import * as vscode from 'vscode';
 import { translator } from './translator';
 import { declaimer } from './declaimer';
+import { jumper } from './jumper';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -14,6 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const trans = new translator();
 	const decl = new declaimer();
+	const jump = new jumper();
 	async function hover(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken) {
 		// console.log('document', JSON.stringify(document));
 		// console.log('position', JSON.stringify(position));
@@ -42,6 +44,10 @@ export function activate(context: vscode.ExtensionContext) {
 		if (positionWord !== '') {
 			decl.exec(positionWord);
 		}
+	}));
+
+	context.subscriptions.push(vscode.commands.registerTextEditorCommand('extension.jumpWeb', (textEditor, edit, args) => {
+		jump.exec(textEditor.document.fileName, textEditor.selection.start.line, textEditor.selection.end.line);
 	}));
 }
 
