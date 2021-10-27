@@ -60,6 +60,9 @@ export class jumper {
         })[0].split(" ");
         let url = urlLineBlocks[urlLineBlocks.length-1];
         url = url.replace('https://', '').replace('git@', '').replace('.git', '').replace(':', '/');
+        if (url.includes('github.com')) {
+            return 'https://' + url + '/blob/master/' + pathSuffix;
+        }
         return 'https://' + url + '/-/tree/master/' + pathSuffix;
     }
 
