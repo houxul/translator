@@ -15,7 +15,7 @@ export class translator {
             return text;
         }
 
-        const url = `http://houxulu.club:8090/translator`;
+        const url = `http://www.translator.com:8090/translator`;
         const resp = await ky.post(url, {json: srcs});
         const result = await resp.json();
         if (Array.isArray(result)) {
