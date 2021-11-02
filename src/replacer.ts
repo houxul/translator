@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { ky } from './translator';
+import { ky, host } from './translator';
 
 export class replacer {
     async exec(textEditor: vscode.TextEditor) {
@@ -8,7 +8,7 @@ export class replacer {
             return;
         }
 
-        const url = `http://www.translator.com:8090/translator`;
+        const url = `http://${host}:8090/translator`;
         const respText = await ky.post(url, { json: [value] });
         const respObj = await respText.json() as string[];
 
