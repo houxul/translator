@@ -1,6 +1,6 @@
 import * as kyModule from 'ky-universal';
 
-const ky = kyModule.default || kyModule;
+export const ky = kyModule.default || kyModule;
 
 export class translator {
     private words  = new Map();

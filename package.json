@@ -33,6 +33,11 @@
 				"command": "extension.jumpWeb",
 				"key": "f3",
 				"mac": "f3"
+			},
+			{
+				"command": "extension.replaceWord",
+				"key": "f4",
+				"mac": "f4"
 			}
 		],
 		"menus": {
