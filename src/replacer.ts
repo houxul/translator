@@ -72,6 +72,7 @@ function initialsUppercase(word: string): string {
 
 function removeSymbol(word: string): string {
     let newWord = word;
+    newWord = newWord.replace(/-/g, ' ');
     newWord = newWord.replace(/\./g, ' ');
     newWord = newWord.replace(/,/g, ' ');
     newWord = newWord.replace(/\'s/g, '');
