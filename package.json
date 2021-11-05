@@ -24,18 +24,18 @@
 		],
 		"keybindings": [
 			{
-				"command": "extension.readAloud",
+				"command": "extension.replaceWord",
 				"key": "f2",
-				"mac": "f2",
+				"mac": "f2"
+			},
+			{
+				"command": "extension.readAloud",
+				"key": "f3",
+				"mac": "f3",
 				"when": "editorTextFocus"
 			},
 			{
 				"command": "extension.jumpWeb",
-				"key": "f3",
-				"mac": "f3"
-			},
-			{
-				"command": "extension.replaceWord",
 				"key": "f4",
 				"mac": "f4"
 			}
