@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { ky, host } from './translator';
+import { request } from './request';
 
 export class replacer {
     async exec(textEditor: vscode.TextEditor) {
@@ -7,10 +7,8 @@ export class replacer {
         if (value === '' || !isZhWord(value)) {
             return;
         }
-
-        const url = `http://${host}:8090/translator`;
-        const respText = await ky.post(url, { json: [value] });
-        const respObj = await respText.json() as string[];
+        const resp = await request(JSON.stringify([value]));
+        const respObj = JSON.parse(resp as string)
 
         const genSnippeter = new humpGenSnippeter();
         const snippetes: string[] = [];
@@ -77,6 +75,7 @@ function removeSymbol(word: string): string {
     newWord = newWord.replace(/,/g, ' ');
     newWord = newWord.replace(/\'s/g, '');
     newWord = newWord.replace(/\'m/g, '');
+    newWord = newWord.replace(/'/g, '');
     return newWord;
 }
 

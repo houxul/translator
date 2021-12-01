@@ -3,7 +3,7 @@
 	"displayName": "translator",
 	"description": "word translator",
 	"publisher": "houxul",
-	"version": "0.0.5",
+	"version": "0.0.7",
 	"repository": "https://github.com/houxul/translator",
 	"engines": {
 		"vscode": "^1.48.0"
@@ -18,15 +18,24 @@
 	"contributes": {
 		"commands": [
 			{
+				"command": "extension.replaceWord",
+				"title": "中文转英文"
+			},
+			{
 				"command": "extension.readAloud",
-				"title": "朗读"
+				"title": "朗读单词"
+			},
+			{
+				"command": "extension.jumpWeb",
+				"title": "跳转到git仓库"
 			}
 		],
 		"keybindings": [
 			{
 				"command": "extension.replaceWord",
 				"key": "f2",
-				"mac": "f2"
+				"mac": "f2",
+				"when": "editorTextFocus"
 			},
 			{
 				"command": "extension.readAloud",
@@ -37,18 +46,10 @@
 			{
 				"command": "extension.jumpWeb",
 				"key": "f4",
-				"mac": "f4"
+				"mac": "f4",
+				"when": "editorTextFocus"
 			}
-		],
-		"menus": {
-			"editor/context": [
-				{
-					"when": "editorFocus",
-					"command": "extension.readAloud",
-					"group": "navigation"
-				}
-			]
-		}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",
@@ -66,10 +67,6 @@
 		"glob": "^7.1.6",
 		"mocha": "^7.1.2",
 		"vscode-test": "^1.3.0"
-	},
-	"dependencies": {
-		"ky": "^0.9.0",
-		"ky-universal": "^0.1.0"
 	},
 	"icon": "images/translator.png",
 	"galleryBanner": {

@@ -1,8 +1,4 @@
-import * as kyModule from 'ky-universal';
-
-export const ky = kyModule.default || kyModule;
-
-export const host = '152.136.15.213';
+import { request } from './request';
 
 export class translator {
     private words  = new Map();
@@ -17,9 +13,8 @@ export class translator {
             return text;
         }
 
-        const url = `http://${host}:8090/translator`;
-        const resp = await ky.post(url, {json: srcs});
-        const result = await resp.json();
+        const resp = await request(JSON.stringify(srcs))
+        const result = await JSON.parse(resp as string);
         if (Array.isArray(result)) {
             const rs = result.join('');
             this.words.set(text, rs);
