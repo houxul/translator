@@ -67,10 +67,6 @@
 		"mocha": "^7.1.2",
 		"vscode-test": "^1.3.0"
 	},
-	"dependencies": {
-		"ky": "^0.9.0",
-		"ky-universal": "^0.1.0"
-	},
 	"icon": "images/translator.png",
 	"galleryBanner": {
 		"color": "#C80000",
