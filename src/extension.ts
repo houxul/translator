@@ -40,7 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
 	}));
 
 	context.subscriptions.push(vscode.commands.registerTextEditorCommand('extension.jumpWeb', (textEditor, edit, args) => {
-		jump.exec(textEditor.document.fileName, textEditor.selection.start.line, textEditor.selection.end.line);
+		jump.exec(textEditor.document.fileName, textEditor.selection.start.line + 1, textEditor.selection.end.line + 1);
 	}));
 
 	context.subscriptions.push(vscode.commands.registerTextEditorCommand('extension.replaceWord', (textEditor, edit, args) => {
