@@ -3,7 +3,7 @@
 	"displayName": "translator",
 	"description": "word translator",
 	"publisher": "houxul",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"repository": "https://github.com/houxul/translator",
 	"engines": {
 		"vscode": "^1.48.0"
