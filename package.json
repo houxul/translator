@@ -48,6 +48,12 @@
 				"key": "f4",
 				"mac": "f4",
 				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.translateNotes",
+				"key": "f5",
+				"mac": "f5",
+				"when": "editorTextFocus"
 			}
 		]
 	},
