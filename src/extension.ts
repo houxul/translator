@@ -14,7 +14,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "translator" is now active!');
 
-	const tran = new translator();
+	const trans = new translator();
 	const decl = new declaimer();
 	const jump = new jumper();
 	const repl = new replacer();
@@ -22,7 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const range = document.getWordRangeAtPosition(position);
 		if (range) {
 			const positionWord = document.getText(range);
-			const result = await tran.querySnippet(positionWord);
+			const result = await trans.exec(positionWord);
 			return new vscode.Hover(result);
 		}
 		return new vscode.Hover('');
@@ -34,7 +34,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(vscode.commands.registerTextEditorCommand('extension.readAloud', (textEditor, edit, args) => {
 		const positionWord = textEditor.document.getText(textEditor.selection);
-		if (positionWord.trim() !== '') {
+		if (positionWord !== '') {
 			decl.exec(positionWord);
 		}
 	}));
@@ -45,15 +45,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(vscode.commands.registerTextEditorCommand('extension.replaceWord', (textEditor, edit, args) => {
 		repl.exec(textEditor);
-	}));
-
-	context.subscriptions.push(vscode.commands.registerTextEditorCommand('extension.translateNotes', async (textEditor, edit, args) => {
-		const text = textEditor.document.getText(textEditor.selection);
-		if (text.trim() === '') {
-			return;
-		}
-		const value = await tran.queryNotes(text);
-		vscode.window.showInformationMessage(text+'\n'+value);
 	}));
 }
 
