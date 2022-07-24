@@ -3,9 +3,8 @@ import { request } from './request';
 
 export class replacer {
     async exec(textEditor: vscode.TextEditor) {
-        await vscode.commands.executeCommand('cursorWordLeftSelect');
         const value = textEditor.document.getText(textEditor.selection);
-        if (value.trim() === '' || !isZh(value)) {
+        if (value === '' || !isZhWord(value)) {
             return;
         }
         const resp = await request(JSON.stringify([value]));
@@ -88,6 +87,6 @@ function removeSpecialWord(words: string[]): string[] {
     });
 }
 
-function isZh(word: string) {
+function isZhWord(word: string) {
     return escape(word).includes('%u');
 }
